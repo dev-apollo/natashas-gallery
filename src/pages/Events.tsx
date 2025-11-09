@@ -7,7 +7,11 @@ function Events() {
     <>
       <NavbarNG></NavbarNG>
       <Container>
-        <h1 className="text-center">Eventos</h1>
+        <h1 className="text-center">
+          <strong>  
+            Eventos
+          </strong>
+        </h1>
       </Container>
     </>
   )

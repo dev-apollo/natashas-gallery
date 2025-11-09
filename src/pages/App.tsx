@@ -1,4 +1,5 @@
 import { Container } from "react-bootstrap";
+import "../styles/homepage.css"
 import AboutMe from "../components/homepage/AboutMe";
 import NavbarNG from "../components/NavbarNG";
 import AboutArt from "../components/homepage/AboutArt";
@@ -11,7 +12,9 @@ function App() {
     <>
       <NavbarNG></NavbarNG>
       <Container>
-        <h1 className="text-center">Natasha's Gallery</h1>
+        <h1 className="text-center">
+          <strong>Natasha's Gallery</strong>
+        </h1>
         <AboutMe></AboutMe>
         <AboutArt></AboutArt>
         <NextEvent></NextEvent>

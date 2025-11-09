@@ -7,8 +7,8 @@ function AboutMe() {
     <div className="my-3">
         <h2>Sobre mim</h2>
         <Row>
-            <Col>
-                <Image src={noImage} fluid></Image>
+            <Col md="auto">
+                <Image src={noImage} className="foto" fluid></Image>
             </Col>
             <Col>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nemo nesciunt aperiam earum magni ducimus quos dicta. Doloribus, vero vel. Dolorum excepturi qui quia magnam ab necessitatibus deserunt nihil delectus.

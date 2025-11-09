@@ -10,8 +10,11 @@ function AboutArt() {
             <Col>
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima nemo nesciunt aperiam earum magni ducimus quos dicta. Doloribus, vero vel. Dolorum excepturi qui quia magnam ab necessitatibus deserunt nihil delectus.
             </Col>
-            <Col>
-                <Image src={noImage} fluid></Image>
+            <Col className="text-center" md="auto">
+                <Image src={noImage} className="foto" fluid></Image>
+                <p>
+                  <em>Nome da obra - ano</em>
+                </p>
             </Col>
         </Row>
     </div>

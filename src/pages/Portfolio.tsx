@@ -7,7 +7,11 @@ function Portfolio() {
     <>
       <NavbarNG></NavbarNG>
       <Container>
-        <h1 className="text-center">Portfólio</h1>
+        <h1 className="text-center">
+          <strong>
+            Portfólio
+          </strong>
+        </h1>
       </Container>
     </>
   )
