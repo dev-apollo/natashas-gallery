@@ -1,0 +1,13 @@
+.icone {
+    color: #464121;
+}
+
+.inputs {
+    background-color: #ecead7;
+    color: #464121;
+}
+
+.inputs:focus, .inputs:active {
+    background-color: #ecead7;
+    color: #501e26;
+}

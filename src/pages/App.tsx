@@ -12,7 +12,7 @@ function App() {
     <>
       <NavbarNG></NavbarNG>
       <Container>
-        <h1 className="text-center">
+        <h1 className="text-center my-3">
           <strong>Natasha's Gallery</strong>
         </h1>
         <AboutMe></AboutMe>

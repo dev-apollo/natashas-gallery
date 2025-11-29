@@ -1,5 +1,37 @@
 @import "@fontsource/roboto";
 
 body * {
-    font-family: "Roboto", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+html body {
+  background-color: #cac49f;
+}
+
+.modal-backdrop.show {
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(4px);
+}
+
+.button-ok {
+  background-color: #464121;
+  color: #cac49f;
+  border-color: #423f27;
+}
+
+.button-ok:hover, .button-ok:active{
+  background-color: #535037 !important;
+  color: #cac49f !important;
+  border-color: #5a5637 !important;
+}
+
+.button-cancel {
+  background-color: #501e26;
+  color: #cac49f;
+}
+
+.button-cancel:hover, .button-cancel:active{
+  background-color: #80424c !important;
+  color: #cac49f !important;
+  border-color: #68323b !important;
 }

@@ -1,25 +1,58 @@
-import { Button, Form } from "react-bootstrap";
+import { Form } from "react-bootstrap";
+import { motion } from "motion/react"
 
-function FormContacts(){
+interface FormContactsProps {
+    infosEmail: {
+        nome: string;
+        email: string;
+        assunto: string;
+        corpo: string;
+    };
+    setInfosEmail: React.Dispatch<React.SetStateAction<{
+        nome: string;
+        email: string;
+        assunto: string;
+        corpo: string;
+    }>>;
+    handleSendEmail: (e: any) => void;
+}
+
+function FormContacts({ infosEmail, setInfosEmail, handleSendEmail }: FormContactsProps) {
     return (
         <Form>
             <Form.Group className="my-3">
-                <Form.Label>Nome</Form.Label>
-                <Form.Control type="text" placeholder="Nome completo"></Form.Control>
+                <Form.Label><strong>Nome:</strong></Form.Label>
+                <Form.Control type="text" placeholder="Nome completo"
+                    className="inputs"
+                    value={infosEmail.nome}
+                    onChange={(e) => setInfosEmail(prev => ({ ...prev, nome: e.target.value }))}
+                ></Form.Control>
             </Form.Group>
             <Form.Group className="my-3">
-                <Form.Label>Email</Form.Label>
-                <Form.Control type="email" placeholder="exemplo@email.com"></Form.Control>
+                <Form.Label><strong>Email:</strong></Form.Label>
+                <Form.Control type="email" placeholder="exemplo@email.com"
+                    className="inputs"
+                    value={infosEmail.email}
+                    onChange={(e) => setInfosEmail(prev => ({ ...prev, email: e.target.value }))}
+                ></Form.Control>
             </Form.Group>
             <Form.Group className="my-3">
-                <Form.Label>Assunto</Form.Label>
-                <Form.Control type="text" placeholder="Comissão"></Form.Control>
+                <Form.Label><strong>Assunto:</strong></Form.Label>
+                <Form.Control type="text" placeholder="Comissão"
+                    className="inputs"
+                    value={infosEmail.assunto}
+                    onChange={(e) => setInfosEmail(prev => ({ ...prev, assunto: e.target.value }))}
+                ></Form.Control>
             </Form.Group>
             <Form.Group className="my-3">
-                <Form.Label>Corpo</Form.Label>
-                <Form.Control as="textarea" placeholder="Detalhes da comissão..."></Form.Control>
+                <Form.Label><strong>Corpo:</strong></Form.Label>
+                <Form.Control as="textarea" placeholder="Detalhes da comissão..."
+                    className="inputs"
+                    value={infosEmail.corpo}
+                    onChange={(e) => setInfosEmail(prev => ({ ...prev, corpo: e.target.value }))}
+                ></Form.Control>
             </Form.Group>
-            <Button>Enviar</Button>
+            <motion.button onClick={handleSendEmail} className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Enviar</motion.button>
         </Form>
     )
 }
