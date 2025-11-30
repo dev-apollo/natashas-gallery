@@ -2,13 +2,11 @@ import { Container, Form } from "react-bootstrap"
 import NavbarNG from "../components/NavbarNG"
 import { ChangeEvent, useState } from "react"
 import { createArt } from "../services/api";
-import { useNavigate } from "react-router";
 import "../styles/contacts.css"
 import { motion } from "motion/react"
 
 function CreateArt() {
 
-    const navigate = useNavigate();
     const [infos, setInfos] = useState({
         title: "",
         description: "",

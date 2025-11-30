@@ -1,5 +1,4 @@
 import { ChangeEvent, useState } from "react";
-import { useNavigate } from "react-router";
 import NavbarNG from "../components/NavbarNG";
 import { Container, Form } from "react-bootstrap";
 import { createEvent } from "../services/api";
@@ -8,7 +7,6 @@ import { motion } from "motion/react"
 
 function CreateEvent() {
 
-    const navigate = useNavigate();
     const [infos, setInfos] = useState({
         title: "",
         description: "",
