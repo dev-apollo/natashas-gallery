@@ -6,7 +6,7 @@ function NavbarNG() {
 
   return (
     <Navbar expand="lg" className="px-3 navbarng">
-      <Navbar.Brand as={Link} to="/portfolio">
+      <Navbar.Brand as={Link} to="/">
         Natasha's Gallery
       </Navbar.Brand>
 

@@ -139,7 +139,7 @@ function Contacts() {
               type="email"
             ></Form.Control>
           </Form.Group>
-          <motion.button className="button-ok btn" onClick={handleUpdateDestino} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Alterar destino</motion.button>
+          <motion.button type="submit" className="button-ok btn" onClick={handleUpdateDestino} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Alterar destino</motion.button>
         </Form>
         )}
       </Container >

@@ -29,7 +29,7 @@ function CreateArt() {
             data.append("artYear", String(infos.artYear));
             data.append("mainImgUrl", newImage);
             await createArt(data);
-            navigate("/portfolio")
+            window.location.reload();
         } catch (e) {
             console.error(e);
             alert("Erro ao criar arte!");
@@ -84,7 +84,7 @@ function CreateArt() {
                             onChange={(e: ChangeEvent<HTMLInputElement>) => setNewImage(e.target.files?.[0] || null)}
                         ></Form.Control>
                     </Form.Group>
-                    <motion.button className="button-ok btn" whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} type="submit">Adicionar arte</motion.button>
+                    <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit">Adicionar arte</motion.button>
                 </Form>
             </Container>
         </>

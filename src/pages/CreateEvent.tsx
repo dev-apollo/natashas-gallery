@@ -40,7 +40,7 @@ function CreateEvent() {
             form.append("status", "visible");
             form.append("coverImg", newImage);
             await createEvent(form);
-            navigate("/events");
+            window.location.reload();
         } catch (e) {
             console.error(e);
             alert("Erro ao criar evento.")
