@@ -83,4 +83,9 @@ export const createEvent = (data: FormData) => {
     });
 }
 
-export const sendEmail = (data: FormData) => axios.post("/contato", data);
+export const sendEmail = (data: FormData) => {
+  return axios.post("/contato", data, {
+    headers: { "Content-Type": "multipart/form-data" },
+    responseType: "text"
+  });
+}

@@ -6,6 +6,7 @@ import { getAllSocials, getEmail, sendEmail, updateAllSocials, updateEmailDestin
 import Skeleton from "react-loading-skeleton";
 import "../styles/contacts.css"
 import { motion } from "motion/react"
+import { useNavigate } from "react-router";
 
 function Contacts() {
 
@@ -19,6 +20,7 @@ function Contacts() {
   const [emailDestino, setEmailDestino] = useState("");
   const [loading, setLoading] = useState(true);
   const isLogged = sessionStorage.getItem("authorization");
+  const navigate = useNavigate();
 
   useEffect(() => {
     const load = async () => {
@@ -41,9 +43,9 @@ function Contacts() {
       const novoLink = prompt("Digite o novo link da rede social:", social.link);
       if (novoLink === null || novoLink.trim() === "") return;
       const atualizados = infosSocials.map(s => s.type === social.type ? { ...s, link: novoLink } : s);
-      setInfosSocials(atualizados);
       try {
-        await updateAllSocials(infosSocials);
+        await updateAllSocials(atualizados);
+        setInfosSocials(atualizados);
         alert("Rede social atualizada!");
       } catch (e) {
         console.error(e);
@@ -114,12 +116,12 @@ function Contacts() {
               isLogged ? (
                 <i
                   onClick={() => handleUpdate(social)}
-                  key={social.id}
+                  key={social.type}
                   className={`bi bi-${social.type} mx-1 icone`}
                   style={{ fontSize: "2rem" }}
                 ></i>
               ) : (
-                <a href={social.link} key={social.id} target="_blank" rel="noreferrer">
+                <a href={social.link} key={social.type} target="_blank" rel="noreferrer">
                   <i
                     className={`bi bi-${social.type} mx-1 icone`}
                     style={{ fontSize: "2rem" }}

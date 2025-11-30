@@ -19,7 +19,7 @@ interface FormContactsProps {
 
 function FormContacts({ infosEmail, setInfosEmail, handleSendEmail }: FormContactsProps) {
     return (
-        <Form>
+        <Form onSubmit={handleSendEmail}>
             <Form.Group className="my-3">
                 <Form.Label><strong>Nome:</strong></Form.Label>
                 <Form.Control type="text" placeholder="Nome completo"
@@ -52,7 +52,7 @@ function FormContacts({ infosEmail, setInfosEmail, handleSendEmail }: FormContac
                     onChange={(e) => setInfosEmail(prev => ({ ...prev, corpo: e.target.value }))}
                 ></Form.Control>
             </Form.Group>
-            <motion.button onClick={handleSendEmail} className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Enviar</motion.button>
+            <motion.button type="submit" className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Enviar</motion.button>
         </Form>
     )
 }
