@@ -10,6 +10,7 @@ import { motion } from "motion/react"
 function Contacts() {
 
   const [infosSocials, setInfosSocials] = useState<any[]>([]);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [infosEmail, setInfosEmail] = useState({
     nome: "",
     email: "",
@@ -71,6 +72,7 @@ function Contacts() {
 
   const handleSendEmail = async (e: any) => {
     e.preventDefault()
+    setIsDisabled(true);
     if (!infosEmail.nome || !infosEmail.email || !infosEmail.assunto || !infosEmail.corpo) {
       alert("Preencha todos os campos antes de enviar!");
       return;
@@ -94,6 +96,8 @@ function Contacts() {
     } catch (e) {
       console.error(e);
       alert("Erro ao enviar email!");
+    } finally {
+      setIsDisabled(false);
     }
   };
 
@@ -129,7 +133,7 @@ function Contacts() {
             )
           )}
         </div>
-        <FormContacts infosEmail={infosEmail} setInfosEmail={setInfosEmail} handleSendEmail={handleSendEmail}></FormContacts>
+        <FormContacts infosEmail={infosEmail} setInfosEmail={setInfosEmail} handleSendEmail={handleSendEmail} isDisabled={isDisabled}></FormContacts>
         {isLogged && (<Form>
           <Form.Group className="my-3">
             <Form.Label><strong>Email de destino:</strong></Form.Label>

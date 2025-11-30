@@ -58,7 +58,7 @@ export const updateAbout = (id: string, data: FormData) => {
 
 export const updateAllSocials = (socials: any) => {
     const token = sessionStorage.getItem("authorization")
-    return axios.put("/social", socials, {
+    return axios.put("/social", { socials }, {
         headers: {
             Authorization: token
         }

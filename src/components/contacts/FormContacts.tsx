@@ -15,9 +15,10 @@ interface FormContactsProps {
         corpo: string;
     }>>;
     handleSendEmail: (e: any) => void;
+    isDisabled: boolean
 }
 
-function FormContacts({ infosEmail, setInfosEmail, handleSendEmail }: FormContactsProps) {
+function FormContacts({ infosEmail, setInfosEmail, handleSendEmail, isDisabled }: FormContactsProps) {
     return (
         <Form onSubmit={handleSendEmail}>
             <Form.Group className="my-3">
@@ -52,7 +53,7 @@ function FormContacts({ infosEmail, setInfosEmail, handleSendEmail }: FormContac
                     onChange={(e) => setInfosEmail(prev => ({ ...prev, corpo: e.target.value }))}
                 ></Form.Control>
             </Form.Group>
-            <motion.button type="submit" className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Enviar</motion.button>
+            <motion.button type="submit" className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} disabled={isDisabled}>Enviar</motion.button>
         </Form>
     )
 }
