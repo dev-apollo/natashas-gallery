@@ -6,7 +6,6 @@ import { getAllSocials, getEmail, sendEmail, updateAllSocials, updateEmailDestin
 import Skeleton from "react-loading-skeleton";
 import "../styles/contacts.css"
 import { motion } from "motion/react"
-import { useNavigate } from "react-router";
 
 function Contacts() {
 
@@ -20,7 +19,6 @@ function Contacts() {
   const [emailDestino, setEmailDestino] = useState("");
   const [loading, setLoading] = useState(true);
   const isLogged = sessionStorage.getItem("authorization");
-  const navigate = useNavigate();
 
   useEffect(() => {
     const load = async () => {

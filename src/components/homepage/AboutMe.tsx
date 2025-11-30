@@ -1,4 +1,4 @@
-import { Row, Col, Image, Form, Button } from "react-bootstrap"
+import { Row, Col, Image, Form } from "react-bootstrap"
 import { getInfosAboutMe, updateAbout } from "../../services/api"
 import { ChangeEvent, useEffect, useState } from "react"
 import Skeleton from "react-loading-skeleton";
