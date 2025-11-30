@@ -6,6 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import NavbarNG from "../components/NavbarNG";
 import "../styles/events.css"
 import { motion } from "motion/react"
+import { useNavigate } from "react-router";
 
 function EventsByCountry() {
 
@@ -14,12 +15,12 @@ function EventsByCountry() {
     const [passEventos, setPassEventos] = useState<any>([]);
     const [loading, setLoading] = useState(true);
     const isLogged = sessionStorage.getItem("authorization");
-
+    const navigate = useNavigate();
     const handleDelete = (eventoId: string) => {
         try {
             deleteEvent(eventoId);
             alert("Evento excluída.");
-            window.location.reload();
+            navigate("/events")
         } catch (e) {
             console.error(e);
         }
