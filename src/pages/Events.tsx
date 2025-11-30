@@ -34,45 +34,64 @@ function Events() {
 
   return (
     <>
-      <NavbarNG></NavbarNG>
-      <Container>
-        <h1 className="text-center my-3">
-          <strong>
-            Eventos
-          </strong>
-        </h1>
+      <NavbarNG />
+
+      <Container className="events-container">
+
+
+        <h1 className="events-titles">Eventos</h1>
+        <div className="events-divider"></div>
+
         {isLogged && (
-          <div className="text-center">
+          <div className="text-center my-3">
             <Link to="/createEvent">
-              <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Adicionar evento</motion.button>
+              <motion.button 
+                className="button-ok btn"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Adicionar evento
+              </motion.button>
             </Link>
           </div>
         )}
-        <div>
-          <h2>Selecione um país:</h2>
-          <ul>
+
+        <div className="events-section">
+          <h2 className="events-subtitle">Selecione um país</h2>
+
+          <div className="countries-grid">
             {loading ? (
-              Array.from({ length: 4 }).map((_, i) => (
-                <li key={i}>
-                  <Skeleton baseColor="#837e61" count={1} width="200px" />
-                </li>
+              Array.from({ length: 3 }).map((_, i) => (
+                <Skeleton 
+                  key={i}
+                  baseColor="#837e61" 
+                  height={80} 
+                  width={220}
+                  className="country-skeleton"
+                />
               ))
             ) : paises.length > 0 ? (
               paises.map((pais) => (
-                <li key={pais}>
-                  <Link className="link" to={`/events/${encodeURIComponent(pais)}`}>
+                <motion.div
+                  key={pais}
+                  className="country-card"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Link className="country-link" to={`/events/${encodeURIComponent(pais)}`}>
                     {pais}
                   </Link>
-                </li>
+                </motion.div>
               ))
             ) : (
-              <li>Nenhum país encontrado.</li>
+              <p className="no-result">Nenhum país encontrado.</p>
             )}
-          </ul>
+          </div>
         </div>
+
       </Container>
     </>
-  )
+  );
 }
 
 export default Events

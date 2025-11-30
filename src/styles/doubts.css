@@ -1,0 +1,79 @@
+.doubts-section {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: 0.3s ease;
+
+  padding: 45px 30px;
+  border-radius: 20px;
+  margin-top: 35px;
+
+  text-align: center;
+
+}
+
+.doubts-section:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+}
+
+.doubts-title {
+  color: #501e26;
+  font-weight: 700;
+  margin-bottom: 25px;
+}
+
+.doubts-card {
+  background: rgba(255, 255, 255, 0.28);
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  padding: 35px 25px;
+  border-radius: 22px;
+  max-width: 550px;
+  margin: 0 auto;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+  border: 1px solid rgba(255,255,255,0.4);
+  transition: 0.3s ease;
+}
+
+.doubts-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.18);
+}
+
+.doubts-icon {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+}
+
+.doubts-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: #422025;
+  margin-bottom: 25px;
+  padding: 0 10px;
+}
+
+.doubts-button {
+  background: linear-gradient(135deg, #501e26, #7a2c35);
+  color: #fff;
+  border: none;
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.doubts-button:hover {
+  background: linear-gradient(135deg, #6b2730, #8a323c);
+}
+
+@media (max-width: 600px) {
+  .doubts-text {
+    font-size: 1.05rem;
+  }
+}

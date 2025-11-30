@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router";
+import { useParams, useNavigate } from "react-router";
 import { deleteEvent, getAllEventsByCountry } from "../services/api";
-import { Card, CardImg, Container } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Skeleton from "react-loading-skeleton";
 import NavbarNG from "../components/NavbarNG";
-import "../styles/events.css"
+import "../styles/eventsByCountry.css";
 import { motion } from "motion/react"
-import { useNavigate } from "react-router";
 
 function EventsByCountry() {
 
@@ -19,7 +18,7 @@ function EventsByCountry() {
     const handleDelete = (eventoId: string) => {
         try {
             deleteEvent(eventoId);
-            alert("Evento excluída.");
+            alert("Evento excluído.");
             navigate("/events")
         } catch (e) {
             console.error(e);
@@ -62,76 +61,120 @@ function EventsByCountry() {
 
     return (
         <>
-            <NavbarNG></NavbarNG>
-            <Container>
-                <h1 className="text-center my-3">
-                    <strong>Eventos</strong>
-                </h1>
-                <div>
-                    <h2 className="text-center"><strong>Próximos eventos</strong></h2>
-                    <Container className="d-flex flex-wrap my-3">
-                        {loading ? (
-                            Array.from({ length: 6 }).map((_, i) => (
-                                <Skeleton className="mx-1" baseColor="#837e61" key={i} width={200} height={200} />
-                            ))
-                        ) : (
-                            proxEventos.map((evento: any) => (
-                                <Card key={evento.id} className="corpo  mx-3">
-                                    <CardImg src={evento.coverImgUrl} className="foto" />
-                                    <Card.Body>
-                                        <Card.Title><strong>{evento.title}</strong></Card.Title>
-                                        <div>{evento.description}</div>
-                                        <div className="my-2">
+            <NavbarNG />
+
+            <Container className="events-country-container">
+
+                <h1 className="events-title">Eventos em {country}</h1>
+                <div className="events-divider"></div>
+
+                <section className="events-section">
+                    <h2 className="events-subtitle">Próximos eventos</h2>
+
+                    {loading ? (
+                        <Container className="events-grid">
+                            {Array.from({ length: 6 }).map((_, i) => (
+                                <Skeleton key={i} baseColor="#837e61" width={250} height={250} />
+                            ))}
+                        </Container>
+                    ) : proxEventos.length === 0 ? (
+                        <p className="events-empty">Nenhum próximo evento disponível.</p>
+                    ) : (
+                        <Container className="events-grid">
+                            {proxEventos.map((evento: any) => (
+                                <motion.div
+                                    key={evento.id}
+                                    className="event-card"
+                                    whileHover={{ scale: 1.03 }}
+                                >
+                                    <div className="event-img-wrapper">
+                                        <img src={evento.coverImgUrl} className="event-img" alt="" />
+                                    </div>
+
+                                    <div className="event-info">
+                                        <h3 className="event-title">{evento.title}</h3>
+                                        <p className="event-desc">{evento.description}</p>
+
+                                        <p className="event-date">
                                             <em>
-                                                {evento.location.city}/{evento.location.state} - {evento.startDate.toLocaleDateString("pt-BR")}
+                                                {evento.location.city}/{evento.location.state} • {evento.startDate.toLocaleDateString("pt-BR")}
                                                 {evento.startDate.getTime() !== evento.endDate.getTime() &&
                                                     ` à ${evento.endDate.toLocaleDateString("pt-BR")}`}
                                             </em>
-                                        </div>
+                                        </p>
+
                                         {isLogged && (
-                                            <div>
-                                                <motion.button className="button-cancel btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => { handleDelete(evento.id) }}>Excluir evento</motion.button>
-                                            </div>
+                                            <motion.button
+                                                className="button-cancel btn event-delete"
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                onClick={() => handleDelete(evento.id)}
+                                            >
+                                                Excluir
+                                            </motion.button>
                                         )}
-                                    </Card.Body>
-                                </Card>
-                            ))
-                        )}
-                    </Container>
-                    <h2 className="text-center"><strong>Eventos passados</strong></h2>
-                    <Container className="d-flex flex-wrap my-3">
-                        {loading ? (
-                            Array.from({ length: 6 }).map((_, i) => (
-                                <Skeleton className="mx-1" baseColor="#837e61" key={i} width={200} height={200} />
-                            ))
-                        ) : (
-                            passEventos.map((evento: any) => (
-                                <Card key={evento.id} className="corpo mx-3">
-                                    <CardImg src={evento.coverImgUrl} className="foto" />
-                                    <Card.Body>
-                                        <Card.Title><strong>{evento.title}</strong></Card.Title>
-                                        <div>{evento.description}</div>
-                                        <div className="my-2">
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </Container>
+                    )}
+                </section>
+
+
+                <section className="events-section">
+                    <h2 className="events-subtitle">Eventos passados</h2>
+
+                    {loading ? (
+                        <Container className="events-grid">
+                            {Array.from({ length: 6 }).map((_, i) => (
+                                <Skeleton key={i} baseColor="#837e61" width={250} height={250} />
+                            ))}
+                        </Container>
+                    ) : passEventos.length === 0 ? (
+                        <p className="events-empty">Nenhum evento passado encontrado.</p>
+                    ) : (
+                        <Container className="events-grid">
+                            {passEventos.map((evento: any) => (
+                                <motion.div
+                                    key={evento.id}
+                                    className="event-card"
+                                    whileHover={{ scale: 1.03 }}
+                                >
+                                    <div className="event-img-wrapper">
+                                        <img src={evento.coverImgUrl} className="event-img" alt="" />
+                                    </div>
+
+                                    <div className="event-info">
+                                        <h3 className="event-title">{evento.title}</h3>
+                                        <p className="event-desc">{evento.description}</p>
+
+                                        <p className="event-date">
                                             <em>
-                                                {evento.location.city}/{evento.location.state} - {evento.startDate.toLocaleDateString("pt-BR")}
+                                                {evento.location.city}/{evento.location.state} • {evento.startDate.toLocaleDateString("pt-BR")}
                                                 {evento.startDate.getTime() !== evento.endDate.getTime() &&
                                                     ` à ${evento.endDate.toLocaleDateString("pt-BR")}`}
                                             </em>
-                                        </div>
+                                        </p>
+
                                         {isLogged && (
-                                            <div>
-                                                <motion.button className="button-cancel btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={() => { handleDelete(evento.id) }}>Excluir evento</motion.button>
-                                            </div>
+                                            <motion.button
+                                                className="button-cancel btn event-delete"
+                                                whileHover={{ scale: 1.05 }}
+                                                whileTap={{ scale: 0.9 }}
+                                                onClick={() => handleDelete(evento.id)}
+                                            >
+                                                Excluir
+                                            </motion.button>
                                         )}
-                                    </Card.Body>
-                                </Card>
-                            ))
-                        )}
-                    </Container>
-                </div>
+                                    </div>
+                                </motion.div>
+                            ))}
+                        </Container>
+                    )}
+                </section>
             </Container>
         </>
-    )
+    );
 }
 
 export default EventsByCountry

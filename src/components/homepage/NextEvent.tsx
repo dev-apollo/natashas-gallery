@@ -1,9 +1,10 @@
-import { Container, Image } from "react-bootstrap"
+import { Image } from "react-bootstrap"
 import { getInfosNextEvent } from "../../services/api";
 import { useEffect, useState } from "react"
 import { Link } from "react-router"
 import Skeleton from "react-loading-skeleton";
 import { motion } from "motion/react"
+import "../../styles/nextEvent.css";
 
 function NextEvent() {
 
@@ -41,46 +42,79 @@ function NextEvent() {
       } finally {
         setLoading(false);
       }
-    }
+    };
     load();
   }, []);
 
+  const hasEvent = infos.title !== "" && !loading;
+
   return (
-    <Container className="text-center my-3">
-      <h2>
-        <strong>Próximo evento</strong>
-      </h2>
-      {loading ? (
-        <Skeleton baseColor="#837e61" width="200px" height="200px"></Skeleton>
-      ) : (
-        <Image rounded src={infos.coverImgUrl} className="foto" fluid></Image>
+    <motion.div 
+      className="next-event-section"
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      <div className="event-header">
+        <h2 className="event-title">Próximo evento</h2>
+        <div className="event-divider"></div>
+      </div>
+
+      {hasEvent && (
+        <motion.div 
+          className="event-card"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+        >
+          <div className="event-img-wrapper">
+            {loading ? (
+              <Skeleton width="260px" height="160px" baseColor="#837e61" />
+            ) : (
+              <Image
+                src={infos.coverImgUrl}
+                fluid
+                rounded
+                className="event-img"
+              />
+            )}
+          </div>
+
+          <div className="event-info">
+            <h3 className="event-name">
+              {loading ? (
+                <Skeleton width="280px" baseColor="#837e61" />
+              ) : (
+                infos.title
+              )}
+            </h3>
+
+            <p className="event-sub">
+              {infos.location.city}/{infos.location.state} —{" "}
+              {infos.startDate.toLocaleDateString("pt-BR")}
+              {infos.startDate.getTime() !== infos.endDate.getTime() &&
+                ` à ${infos.endDate.toLocaleDateString("pt-BR")}`}
+            </p>
+          </div>
+        </motion.div>
       )}
-      <h3 className="my-2">
-        {loading ? (
-          <Skeleton baseColor="#837e61" count={1} width="300px"></Skeleton>
-        ) : (
-          <strong>{infos.title}</strong>
-        )}
-      </h3>
-      <p className="texto">
-        {loading ? (
-          <Skeleton baseColor="#837e61" count={1} width="300px" />
-        ) : (infos.title != "" ? (
-          <em>
-            {infos.location.city}/{infos.location.state} -{" "}
-            {infos.startDate.toLocaleDateString("pt-BR")}
-            {infos.startDate.getTime() !== infos.endDate.getTime() &&
-              ` à ${infos.endDate.toLocaleDateString("pt-BR")}`}
-          </em>
-        ) : (
-          <h3>Não há eventos futuros.</h3>
-        ))}
-      </p>
+
+      {!loading && !hasEvent && (
+        <p className="event-sub" style={{ textAlign: "center", marginTop: "20px" }}>
+          <em>Não há eventos futuros.</em>
+        </p>
+      )}
+
       <Link to={"/events"}>
-        <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Visualizar eventos</motion.button>
+        <motion.button 
+          className="event-button"
+          whileHover={{ scale: 1.06 }}
+          whileTap={{ scale: 0.92 }}
+        >
+          Visualizar eventos
+        </motion.button>
       </Link>
-    </Container >
-  )
+
+    </motion.div>
+  );
 }
 
 export default NextEvent

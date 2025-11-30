@@ -1,9 +1,56 @@
 .navbarng {
-    background-color: #464121;
+  background-color: #464121 !important;
+  padding: 12px 22px !important;
+  border-bottom: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow: 0 4px 14px rgba(0,0,0,0.25);
 }
 
-.navbarng,
-.navbarng .navbar-brand,
-.navbarng .nav-link {
-  color: #cac49f !important;
+.brand-ng {
+  color: #f5f0dd !important; 
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  letter-spacing: 0.5px;
+
+  transition: 0.2s ease;
+}
+
+.brand-ng:hover {
+  color: #e4d9be !important;
+}
+
+.links-ng {
+  gap: 16px;
+}
+
+.link-ng {
+  color: #e7e2c7 !important;
+  font-weight: 500;
+  font-size: 1.05rem;
+
+  padding: 6px 10px !important;
+  border-radius: 8px;
+
+  transition: 0.25s ease;
+}
+
+.link-ng:hover {
+  background-color: rgba(255,255,255,0.12);
+  color: #ffffff !important;
+}
+
+.toggle-ng {
+  background-color: rgba(255,255,255,0.12) !important;
+  border: none !important;
+}
+
+.toggle-ng:focus {
+  box-shadow: none !important;
+}
+
+.navbar-collapse {
+  background-color: #464121 !important;
+  padding: 12px;
+  border-radius: 8px;
+  margin-top: 10px;
 }

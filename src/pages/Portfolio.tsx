@@ -6,10 +6,11 @@ import ModalPortfolio from "../components/portfolio/ModalPortfolio";
 import { getAllArts } from "../services/api";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router";
+import "../styles/portfolio.css";
 
 function Portfolio() {
 
-  const [artes, setArtes] = useState([]);
+  const [artes, setArtes] = useState<any[]>([]);
   const [selectedArt, setSelectedArt] = useState<any>(null);
   const [loading, setLoading] = useState(true);
   const isLogged = sessionStorage.getItem("authorization");
@@ -30,43 +31,53 @@ function Portfolio() {
 
   return (
     <>
-      <NavbarNG></NavbarNG>
+      <NavbarNG />
+
       <Container>
-        <h1 className="text-center my-3">
-          <strong>
-            Portfólio
-          </strong>
-        </h1>
+        <motion.div 
+          className="portfolio-title-wrapper"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <h1 className="portfolio-title">Portfólio</h1>
+          <div className="portfolio-divider"></div>
+        </motion.div>
+
         {isLogged && (
           <div className="text-center my-3">
             <Link to="/createArt">
-              <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Adicionar uma arte</motion.button>
+              <motion.button
+                className="add-art-button"
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Adicionar uma arte
+              </motion.button>
             </Link>
           </div>
         )}
-        <Container className="d-flex flex-wrap">
+
+        <Container className="portfolio-grid">
           {loading ? (
             Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton className="mx-1" baseColor="#837e61" key={i} width={300} height={300} />
+              <Skeleton key={i} baseColor="#837e61" width={260} height={260} />
             ))
           ) : (
-            artes.map((arte: any) => (
-              <div key={arte.id}>
+            artes.map((arte) => (
+              <div key={arte.id} className="portfolio-item" onClick={() => setSelectedArt(arte)}>
                 <motion.img
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.4 }}
-                  whileTap={{ scale: 0.95 }}
-                  whileHover={{ scale: 1.1 }}
-                  style={{ width: "315px" }}
                   src={arte.mainImgUrl}
-                  className="fluid"
-                  onClick={() => setSelectedArt(arte)}
+                  alt={arte.title}
                 />
               </div>
             ))
           )}
         </Container>
+
         {selectedArt && (
           <ModalPortfolio
             show={true}
@@ -80,6 +91,6 @@ function Portfolio() {
         )}
       </Container>
     </>
-  )
+  );
 }
 export default Portfolio

@@ -1,21 +1,41 @@
 import { Link } from "react-router"
 import { motion } from "motion/react"
+import "../../styles/doubts.css";
 
 function Doubts() {
-
   return (
-    <div className="my-3">
-      <h2>
-        <strong>
-          Dúvidas e comissões
-        </strong>
+    <motion.div 
+      className="doubts-section"
+      initial={{ opacity: 0, y: 15 }}
+      animate={{ opacity: 1, y: 0 }}
+    >
+      <h2 className="doubts-title">
+        Dúvidas e comissões
       </h2>
-      <p className="texto">Caso tenha dúvidas ou decida realizar uma comissão comigo, clique no botão abaixo e preencha o formulário!</p>
-      <Link to="/contacts">
-        <motion.button className="button-ok btn" whileHover={{scale: 1.1}} whileTap={{scale: 0.9}}>Contatar</motion.button>
-      </Link>
-    </div>
-  )
+
+      <motion.div 
+        className="doubts-card"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <div className="doubts-icon">💌</div>
+
+        <p className="doubts-text">
+          Caso tenha dúvidas ou deseje solicitar uma comissão, clique no botão abaixo e preencha o formulário!
+        </p>
+
+        <Link to="/contacts">
+          <motion.button 
+            className="doubts-button"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            Contatar
+          </motion.button>
+        </Link>
+      </motion.div>
+    </motion.div>
+  );
 }
 
 export default Doubts
