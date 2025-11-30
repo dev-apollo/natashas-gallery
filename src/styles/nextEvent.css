@@ -12,8 +12,6 @@
 
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.4);
-
-  transition: 0.3s ease;
 }
 
 .next-event-section:hover {
@@ -49,10 +47,12 @@
   gap: 30px;
   justify-content: center;
   align-items: center;
-  max-width: 900px;
-  margin: 0 auto;
   box-shadow: 0 6px 18px rgba(0,0,0,0.12);
   border-left: 6px solid #501e26;
+  transition: 0.3s ease;
+  max-width: 700px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 @media (max-width: 768px) {
@@ -70,8 +70,7 @@
 }
 
 .event-img {
-  max-width: 260px;
-  border-radius: 12px;
+  width: 100%;
 }
 
 .event-info {
