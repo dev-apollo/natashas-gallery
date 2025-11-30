@@ -103,52 +103,102 @@ function Contacts() {
 
   return (
     <>
-      <NavbarNG></NavbarNG>
-      <Container>
-        <h1 className="text-center my-3">
-          <strong>Contatos</strong>
-        </h1>
-        <div className="d-flex flex-wrap">
-          {loading ? (
-            Array.from({ length: 4 }).map((_, i) => (
-              <Skeleton circle baseColor="#837e61" className="mx-1" width={50} height={50} key={i} />
-            ))
-          ) : (
-            infosSocials.map((social: any) =>
-              isLogged ? (
-                <i
-                  onClick={() => handleUpdate(social)}
-                  key={social.type}
-                  className={`bi bi-${social.type} mx-1 icone`}
-                  style={{ fontSize: "2rem" }}
-                ></i>
-              ) : (
-                <a href={social.link} key={social.type} target="_blank" rel="noreferrer">
+      <NavbarNG />
+
+      <Container className="contacts-page">
+
+        <motion.div 
+          className="contacts-title-wrapper"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h1 className="contacts-title">Contatos</h1>
+          <div className="contacts-divider"></div>
+        </motion.div>
+
+        <motion.div 
+          className="contacts-card glass-card"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h3 className="contacts-subtitle">Redes sociais</h3>
+
+          <div className="contacts-socials">
+            {loading ? (
+              Array.from({ length: 4 }).map((_, i) => (
+                <Skeleton key={i} circle width={50} height={50} baseColor="#837e61" />
+              ))
+            ) : (
+              infosSocials.map((social) =>
+                isLogged ? (
                   <i
-                    className={`bi bi-${social.type} mx-1 icone`}
-                    style={{ fontSize: "2rem" }}
+                    key={social.type}
+                    onClick={() => handleUpdate(social)}
+                    className={`bi bi-${social.type} social-icon editable`}
                   ></i>
-                </a>
+                ) : (
+                  <a
+                    key={social.type}
+                    href={social.link}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    <i className={`bi bi-${social.type} social-icon`}></i>
+                  </a>
+                )
               )
-            )
-          )}
-        </div>
-        <FormContacts infosEmail={infosEmail} setInfosEmail={setInfosEmail} handleSendEmail={handleSendEmail} isDisabled={isDisabled}></FormContacts>
-        {isLogged && (<Form>
-          <Form.Group className="my-3">
-            <Form.Label><strong>Email de destino:</strong></Form.Label>
-            <Form.Control className="inputs"
-              value={emailDestino}
-              onChange={(e) => setEmailDestino(e.target.value)}
-              type="email"
-            ></Form.Control>
-          </Form.Group>
-          <motion.button type="submit" className="button-ok btn" onClick={handleUpdateDestino} whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>Alterar destino</motion.button>
-        </Form>
+            )}
+          </div>
+        </motion.div>
+
+        <motion.div 
+          className="contacts-card glass-card"
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+        >
+          <h3 className="contacts-subtitle">Envie uma mensagem</h3>
+
+          <FormContacts 
+            infosEmail={infosEmail}
+            setInfosEmail={setInfosEmail}
+            handleSendEmail={handleSendEmail}
+            isDisabled={isDisabled}
+          />
+        </motion.div>
+
+        {isLogged && (
+          <motion.div 
+            className="contacts-card glass-card"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+          >
+            <h3 className="contacts-subtitle">Configurações do email</h3>
+
+            <Form onSubmit={handleUpdateDestino}>
+              <Form.Group className="my-3">
+                <Form.Label><strong>Email de destino:</strong></Form.Label>
+                <Form.Control
+                  className="inputs login-input"
+                  value={emailDestino}
+                  onChange={(e) => setEmailDestino(e.target.value)}
+                  type="email"
+                />
+              </Form.Group>
+              <motion.button 
+                type="submit"
+                className="button-save"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                Alterar destino
+              </motion.button>
+            </Form>
+          </motion.div>
         )}
-      </Container >
+
+      </Container>
     </>
-  )
+  );
 }
 
 export default Contacts

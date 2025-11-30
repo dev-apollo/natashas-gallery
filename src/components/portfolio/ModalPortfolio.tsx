@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Modal, Image, Row, Col, Form } from "react-bootstrap"
+import { Modal, Image, Form } from "react-bootstrap"
 import { deleteArt, updateArt } from "../../services/api"
 import "../../styles/modalportfolio.css"
 import "../../styles/contacts.css"
@@ -53,63 +53,88 @@ function ModalPortfolio({ arteId, show, onHide, mainImgUrl, title, description, 
             show={show}
             onHide={onHide}
             backdrop="static"
-            keyboard={false}>
-            <Modal.Header closeButton className="cabecalho"></Modal.Header>
-            <Modal.Body className="corpomodal">
-                <Image src={mainImgUrl} className="my-2" fluid></Image>
-                <Row>
-                    <Col md="auto">
-                        {isLogged ? (
-                            <>
-                                <Form.Group className="my-3">
-                                    <Form.Label><strong>Alterar título</strong></Form.Label>
-                                    <Form.Control
-                                        className="inputs"
-                                        type="text"
-                                        value={infos.title}
-                                        onChange={(e) => setInfos({ ...infos, title: e.target.value })}
-                                    ></Form.Control>
-                                </Form.Group>
-                                <Form.Group className="my-3">
-                                    <Form.Label><strong>Alterar ano</strong></Form.Label>
-                                    <Form.Control
-                                        className="inputs"
-                                        type="number"
-                                        value={infos.artYear}
-                                        onChange={(e) => setInfos({ ...infos, artYear: e.target.value })}
-                                    ></Form.Control>
-                                </Form.Group>
-                            </>
-                        ) : (
-                            <h2>
-                                <strong>{infos.title} - {infos.artYear}</strong>
-                            </h2>
-                        )}
-                    </Col>
-                </Row>
+            keyboard={false}
+            centered
+            dialogClassName="modal-art"
+        >
+            <Modal.Header closeButton className="modal-art-header"/>
+            
+            <Modal.Body className="modal-art-body">
+
+                <div className="modal-art-img-wrapper">
+                    <Image src={mainImgUrl} className="modal-art-img" fluid />
+                </div>
+
+                <div className="modal-art-title-wrapper">
+                    {isLogged ? (
+                        <>
+                            <Form.Group className="my-3">
+                                <Form.Label><strong>Título</strong></Form.Label>
+                                <Form.Control
+                                    className="inputs modal-input"
+                                    type="text"
+                                    value={infos.title}
+                                    onChange={(e) => setInfos({ ...infos, title: e.target.value })}
+                                />
+                            </Form.Group>
+
+                            <Form.Group className="my-3">
+                                <Form.Label><strong>Ano</strong></Form.Label>
+                                <Form.Control
+                                    className="inputs modal-input"
+                                    type="number"
+                                    value={infos.artYear}
+                                    onChange={(e) => setInfos({ ...infos, artYear: e.target.value })}
+                                />
+                            </Form.Group>
+                        </>
+                    ) : (
+                        <>
+                            <h2 className="modal-art-title">{infos.title}</h2>
+                            <div className="modal-art-divider"></div>
+                            <h4 className="modal-art-year">{infos.artYear}</h4>
+                        </>
+                    )}
+                </div>
+
                 {isLogged ? (
                     <>
-                        <Form.Group>
-                            <Form.Label><strong>Alterar descrição</strong></Form.Label>
+                        <Form.Group className="my-3">
+                            <Form.Label><strong>Descrição</strong></Form.Label>
                             <Form.Control
-                                className="inputs"
-                                type="text"
                                 as="textarea"
+                                className="inputs modal-input"
                                 value={infos.description}
                                 onChange={(e) => setInfos({ ...infos, description: e.target.value })}
-                            ></Form.Control>
+                            />
                         </Form.Group>
-                        <div className="my-2 d-flex gap-2">
-                            <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={handleUpdate}>Salvar alterações</motion.button>
-                            <motion.button className="button-cancel btn" whileHover={{scale: 1.1}} whileTap={{scale: 0.9}} onClick={handleDelete}>Excluir arte</motion.button>
+
+                        <div className="my-3 d-flex gap-2 justify-content-end">
+                            <motion.button 
+                                className="button-ok btn modal-btn-save"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={handleUpdate}
+                            >
+                                Salvar alterações
+                            </motion.button>
+
+                            <motion.button 
+                                className="button-cancel btn modal-btn-delete"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.9 }}
+                                onClick={handleDelete}
+                            >
+                                Excluir arte
+                            </motion.button>
                         </div>
                     </>
                 ) : (
-                    <div className="texto">{infos.description}</div>
+                    <p className="modal-art-description">{infos.description}</p>
                 )}
             </Modal.Body>
         </Modal>
-    )
+    );
 }
 
 export default ModalPortfolio

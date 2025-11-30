@@ -3,6 +3,7 @@ import { getInfosAboutArt, updateAbout } from "../../services/api"
 import { ChangeEvent, useEffect, useState } from "react"
 import Skeleton from "react-loading-skeleton";
 import { motion } from "motion/react"
+import "../../styles/aboutArt.css";
 
 function AboutArt() {
 
@@ -45,58 +46,79 @@ function AboutArt() {
   }
 
   return (
-    <div className="my-3">
-      <h2>
-        <strong>
-          Sobre arte
-        </strong>
-      </h2>
-      <Row>
-        <Col>
+    <div className="about-art-section">
+      <motion.div
+        className="art-title-wrapper"
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+        <div className="art-title-line"></div>
+        <h2 className="art-title">Sobre arte</h2>
+      </motion.div>
+
+      <Row className="mt-4 align-items-center gx-5 gy-4">
+        
+        <Col md={8}>
           {loading ? (
-            <Skeleton baseColor="#837e61" count={4}></Skeleton>
-          ) : (
+            <Skeleton baseColor="#837e61" count={4} />
+          ) : isLogged ? (
             <>
-              {isLogged ? (
-                <>
-                  <Form.Control
-                    as="textarea"
-                    rows={4}
-                    className="inputs my-3"
-                    value={infos.text}
-                    onChange={(e) => setInfos({ ...infos, text: e.target.value })}
-                  ></Form.Control>
-                  <Form.Control
-                    type="file"
-                    className="inputs"
-                    accept="image/*"
-                    size="sm"
-                    onChange={(e: ChangeEvent<HTMLInputElement>) => setNewImage(e.target.files?.[0] || null)}
-                  ></Form.Control>
-                </>
-              ) : (
-                <div className="texto my-3">{infos.text}</div>
-              )}
+              <Form.Control
+                as="textarea"
+                rows={6}
+                className="art-input mb-3"
+                value={infos.text}
+                onChange={(e) =>
+                  setInfos({ ...infos, text: e.target.value })
+                }
+              />
+              <Form.Control
+                type="file"
+                className="art-input"
+                accept="image/*"
+                onChange={(e: ChangeEvent<HTMLInputElement>) =>
+                  setNewImage(e.target.files?.[0] || null)
+                }
+              />
             </>
+          ) : (
+            <motion.div
+              className="art-text-block"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <p>{infos.text}</p>
+            </motion.div>
           )}
         </Col>
-        <Col className="text-center" md="auto">
+
+        <Col md={4} className="text-center">
           {loading ? (
-            <Skeleton baseColor="#837e61" width="200px" height="200px"></Skeleton>
+            <Skeleton width="220px" height="220px" baseColor="#837e61" />
           ) : (
-            <>
-              <Image rounded src={infos.imgUrl} className="foto my-3" fluid></Image>
-            </>
+            <motion.div
+              className="art-img-frame"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+            >
+              <Image src={infos.imgUrl} className="art-img" fluid rounded />
+            </motion.div>
           )}
         </Col>
       </Row>
+
       {isLogged && (
-        <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={handleSave}>
+        <motion.button
+          className="art-save-btn"
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handleSave}
+        >
           Salvar alterações sobre arte
         </motion.button>
       )}
-    </div >
-  )
+    </div>
+  );
 }
 
 export default AboutArt

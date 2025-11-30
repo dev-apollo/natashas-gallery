@@ -3,7 +3,7 @@ import NavbarNG from "../components/NavbarNG"
 import { useState } from "react"
 import { getAdminToken } from "../services/firebase";
 import { useNavigate } from "react-router";
-import "../styles/contacts.css"
+import "../styles/login.css"
 import { motion } from "motion/react"
 
 function Login() {
@@ -36,44 +36,69 @@ function Login() {
 
     return (
         <>
-            <NavbarNG></NavbarNG>
-            <Container>
+            <NavbarNG />
+
+            <Container className="login-container">
                 {isLogged ? (
-                    <>
-                        <h1 className="text-center my-3"><strong>Logout</strong></h1>
-                        <div className="text-center">
-                            <motion.button className="button-ok btn btn-lg" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} onClick={handleLogout}>Sair</motion.button>
-                        </div>
-                    </>
+                    <motion.div 
+                        className="login-card glass-card"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                    >
+                        <h1 className="login-title">Logout</h1>
+
+                        <motion.button 
+                            className="login-button logout-btn"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.9 }}
+                            onClick={handleLogout}
+                        >
+                            Sair
+                        </motion.button>
+                    </motion.div>
                 ) : (
-                    <>
-                        <h1 className="text-center my-3"><strong>Login</strong></h1>
+                    <motion.div 
+                        className="login-card glass-card"
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                    >
+                        <h1 className="login-title">Login</h1>
+
                         <Form onSubmit={handleLogin}>
-                            <Form.Group className="my-3">
-                                <Form.Label><strong>Email</strong></Form.Label>
+                            <Form.Group className="mb-4">
+                                <Form.Label className="login-label">Email</Form.Label>
                                 <Form.Control
                                     type="email"
                                     value={infos.email}
-                                    className="inputs"
+                                    className="login-input"
                                     onChange={(e) => setInfos({ ...infos, email: e.target.value })}
                                     placeholder="exemplo@email.com"
                                     required
                                 />
                             </Form.Group>
-                            <Form.Group className="my-3">
-                                <Form.Label><strong>Senha</strong></Form.Label>
+
+                            <Form.Group className="mb-4">
+                                <Form.Label className="login-label">Senha</Form.Label>
                                 <Form.Control
                                     type="password"
                                     value={infos.senha}
-                                    className="inputs"
+                                    className="login-input"
                                     onChange={(e) => setInfos({ ...infos, senha: e.target.value })}
-                                    placeholder="•••••••"
+                                    placeholder="••••••••"
                                     required
                                 />
                             </Form.Group>
-                            <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit">Entrar</motion.button>
+
+                            <motion.button 
+                                className="login-button"
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.9 }}
+                                type="submit"
+                            >
+                                Entrar
+                            </motion.button>
                         </Form>
-                    </>
+                    </motion.div>
                 )}
             </Container>
         </>

@@ -1,7 +1,98 @@
-.cabecalho {
-  background-color: #464121 !important;
+.modal-art {
+  max-width: 850px !important;
 }
 
-.corpomodal {
-    background-color: #cac49f !important;
+.modal-art-header {
+  background: transparent !important;
+  border-bottom: none !important;
+}
+
+.modal-art-body {
+  background: rgba(255, 255, 255, 0.30);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+
+  border-radius: 18px;
+  padding: 30px 40px !important;
+  box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+  border: 1px solid rgba(255,255,255,0.45);
+}
+
+.modal-art-img-wrapper {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.modal-art-img {
+  max-height: 420px;
+  width: auto;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.25);
+}
+
+.modal-art-title-wrapper {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.modal-art-title {
+  font-family: "Playfair Display", serif;
+  font-size: 2rem;
+  color: #501e26;
+  margin-bottom: 8px;
+}
+
+.modal-art-divider {
+  width: 60px;
+  height: 4px;
+  background: #501e26;
+  margin: 0 auto 10px auto;
+  border-radius: 3px;
+}
+
+.modal-art-year {
+  font-size: 1.2rem;
+  color: #6d4c4c;
+  font-weight: 600;
+}
+
+.modal-art-description {
+  margin-top: 15px;
+  font-size: 1.1rem;
+  color: #3e2a2a;
+  text-align: justify;
+  line-height: 1.6;
+  white-space: pre-line;
+}
+
+.modal-input {
+  background: rgba(255,255,255,0.60) !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(80,30,38,0.25) !important;
+}
+
+.modal-input:focus {
+  border-color: #501e26 !important;
+  box-shadow: 0 0 8px rgba(80,30,38,0.4) !important;
+}
+
+.modal-btn-save {
+  background: linear-gradient(135deg, #501e26, #7a2c35);
+  color: white;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+}
+
+.modal-btn-delete {
+  background: linear-gradient(135deg, #6d2b33, #8c3a44);
+  color: white;
+  border-radius: 12px;
+  border: none;
+  font-weight: 600;
+}
+
+.modal-btn-save:hover,
+.modal-btn-delete:hover {
+  opacity: 0.9;
 }

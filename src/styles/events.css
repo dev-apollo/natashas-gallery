@@ -1,13 +1,78 @@
-.link {
-    color: #464121;
+.events-container {
+  padding: 40px 0 80px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
-.foto {
-    width: 100% !important;
-    max-width: 300px !important;
+.events-titles {
+  font-size: 2.6rem;
+  color: #501e26;
+  padding: 12px 28px;
 }
 
-.corpo {
-    background-color: #464121 !important;
-    color: #cac49f;
+.events-divider {
+  width: 70px;
+  height: 5px;
+  background: #501e26;
+  margin: 12px auto 0 auto;
+  border-radius: 4px;
 }
+
+.events-subtitle {
+  font-family: "Playfair Display", serif;
+  color: #501e26;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.countries-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+  width: 100%;
+  max-width: 850px;
+  margin-top: 20px;
+}
+
+.country-card {
+  background: rgba(255,255,255,0.25);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.45);
+
+  padding: 18px;
+  height: 75px;
+  border-radius: 16px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  box-shadow: 0 6px 18px rgba(0,0,0,0.18);
+  transition: 0.3s ease;
+}
+
+.country-card:hover {
+  background: rgba(255,255,255,0.35);
+}
+
+.country-link {
+  font-size: 1.2rem;
+  font-weight: 600;
+  text-decoration: none;
+
+  color: #501e26;
+  transition: 0.2s ease;
+}
+
+.country-link:hover {
+  color: #7a2c35;
+}
+
+.no-result {
+  text-align: center;
+  color: #3a2a2a;
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+
