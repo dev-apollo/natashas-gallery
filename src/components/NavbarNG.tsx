@@ -1,18 +1,22 @@
 import { Navbar, Nav } from "react-bootstrap"
 import "../styles/navbar.css"
+import { Link } from "react-router"
 
 function NavbarNG() {
 
   return (
     <Navbar expand="lg" className="px-3 navbarng">
-      <Navbar.Brand href="/">Natasha's Gallery</Navbar.Brand>
+      <Navbar.Brand as={Link} to="/portfolio">
+        Natasha's Gallery
+      </Navbar.Brand>
+
       <Navbar.Toggle aria-controls="navbarng-collapse" />
       <Navbar.Collapse id="navbarng-collapse">
         <Nav>
-          <Nav.Link href="/portfolio">Portfólio</Nav.Link>
-          <Nav.Link href="/events">Eventos</Nav.Link>
-          <Nav.Link href="/contacts">Contatos</Nav.Link>
-          <Nav.Link href="/login">Login</Nav.Link>
+          <Nav.Link as={Link} to="/portfolio">Portfólio</Nav.Link>
+          <Nav.Link as={Link} to="/events">Eventos</Nav.Link>
+          <Nav.Link as={Link} to="/contacts">Contatos</Nav.Link>
+          <Nav.Link as={Link} to="/login">Login</Nav.Link>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
