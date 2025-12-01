@@ -159,7 +159,7 @@ function EventsByCountry() {
 
                                         {isLogged && (
                                             <motion.button
-                                                className="button-cancel btn event-delete"
+                                                className="button-cancel event-delete"
                                                 whileHover={{ scale: 1.05 }}
                                                 whileTap={{ scale: 0.9 }}
                                                 onClick={() => handleDelete(evento.id)}

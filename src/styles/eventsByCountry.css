@@ -107,9 +107,8 @@
 }
 
 .event-delete {
-  width: 100%;
-  border-radius: 12px !important;
-  margin-top: auto;
+  margin-left: 0px;
+  margin-right: 0px;
 }
 
 .events-empty {
