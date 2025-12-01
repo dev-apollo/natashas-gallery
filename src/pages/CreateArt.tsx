@@ -19,7 +19,7 @@ function CreateArt() {
     const navigate = useNavigate();
         
     const goBack = () : void => {
-        navigate("/events");
+        navigate("/portfolio");
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
