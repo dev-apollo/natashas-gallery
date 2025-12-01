@@ -120,7 +120,7 @@ function ModalPortfolio({ arteId, show, onHide, mainImgUrl, title, description, 
                             </motion.button>
 
                             <motion.button 
-                                className="button-cancel btn modal-btn-delete"
+                                className="button-cancel btn"
                                 whileHover={{ scale: 1.05 }}
                                 whileTap={{ scale: 0.9 }}
                                 onClick={handleDelete}
