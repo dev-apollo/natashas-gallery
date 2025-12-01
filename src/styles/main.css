@@ -37,7 +37,7 @@ html body {
   font-weight: 600;
   transition: 0.25s ease;
   margin-left: 15px;
-  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .button-cancel:hover, .button-cancel:active{
