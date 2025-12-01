@@ -5,7 +5,7 @@ body * {
 }
 
 html body {
-  background-color: #cac49f;
+  background: linear-gradient(180deg, #c9c5b8 0%, #a8a38f 50%, #7c775f 100%);
 }
 
 .modal-backdrop.show {
@@ -14,24 +14,33 @@ html body {
 }
 
 .button-ok {
-  background-color: #464121;
-  color: #cac49f;
-  border-color: #423f27;
+  background: linear-gradient(135deg, #6b2730, #8a323c);
+  color: white;
+  padding: 10px 26px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.25s ease;
 }
 
-.button-ok:hover, .button-ok:active{
-  background-color: #535037 !important;
-  color: #cac49f !important;
-  border-color: #5a5637 !important;
+.button-ok:hover, .button-ok:active {
+  background: linear-gradient(135deg, #6b2730, #8a323c);
+  color: white !important;
 }
 
 .button-cancel {
-  background-color: #501e26;
-  color: #cac49f;
+  background: #816b24;
+  color: white;
+  padding: 10px 26px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 600;
+  transition: 0.25s ease;
+  margin-left: 15px;
+  margin-left: 15px;
 }
 
 .button-cancel:hover, .button-cancel:active{
-  background-color: #80424c !important;
-  color: #cac49f !important;
-  border-color: #68323b !important;
+  background: #816b24;
+  color: white !important;
 }

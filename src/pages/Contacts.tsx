@@ -6,6 +6,7 @@ import { getAllSocials, getEmail, sendEmail, updateAllSocials, updateEmailDestin
 import Skeleton from "react-loading-skeleton";
 import "../styles/contacts.css"
 import { motion } from "motion/react"
+import FooterNG from "../components/FooterNG";
 
 function Contacts() {
 
@@ -186,7 +187,7 @@ function Contacts() {
               </Form.Group>
               <motion.button 
                 type="submit"
-                className="button-save"
+                className="button-ok btn"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.9 }}
               >
@@ -197,6 +198,8 @@ function Contacts() {
         )}
 
       </Container>
+
+      <FooterNG></FooterNG>
     </>
   );
 }

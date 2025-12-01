@@ -4,6 +4,8 @@ import { ChangeEvent, useState } from "react"
 import { createArt } from "../services/api";
 import "../styles/contacts.css"
 import { motion } from "motion/react"
+import FooterNG from "../components/FooterNG";
+import { useNavigate } from "react-router";
 
 function CreateArt() {
 
@@ -13,6 +15,12 @@ function CreateArt() {
         artYear: 2000
     });
     const [newImage, setNewImage] = useState<File | null>(null);
+
+    const navigate = useNavigate();
+        
+    const goBack = () : void => {
+        navigate("/events");
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -27,7 +35,8 @@ function CreateArt() {
             data.append("artYear", String(infos.artYear));
             data.append("mainImgUrl", newImage);
             await createArt(data);
-            window.location.reload();
+            alert("Arte foi criada com sucesso!");
+            window.location.reload();  
         } catch (e) {
             console.error(e);
             alert("Erro ao criar arte!");
@@ -83,8 +92,18 @@ function CreateArt() {
                         ></Form.Control>
                     </Form.Group>
                     <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit">Adicionar arte</motion.button>
+                    <motion.button
+                        className="button-cancel btn"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={goBack}
+                        >
+                        Cancelar
+                    </motion.button>
                 </Form>
             </Container>
+
+            <FooterNG></FooterNG>
         </>
     )
 }
