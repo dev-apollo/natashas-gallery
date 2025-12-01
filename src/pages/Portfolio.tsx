@@ -7,6 +7,7 @@ import { getAllArts } from "../services/api";
 import Skeleton from "react-loading-skeleton";
 import { Link } from "react-router";
 import "../styles/portfolio.css";
+import FooterNG from "../components/FooterNG";
 
 function Portfolio() {
 
@@ -90,6 +91,8 @@ function Portfolio() {
           />
         )}
       </Container>
+
+      <FooterNG></FooterNG>
     </>
   );
 }

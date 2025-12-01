@@ -5,6 +5,7 @@ import NavbarNG from "../components/NavbarNG";
 import AboutArt from "../components/homepage/AboutArt";
 import NextEvent from "../components/homepage/NextEvent";
 import Doubts from "../components/homepage/Doubts";
+import FooterNG from "../components/FooterNG";
 
 function App() {
 
@@ -17,6 +18,7 @@ function App() {
         <NextEvent></NextEvent>
         <Doubts></Doubts>
       </Container>
+      <FooterNG></FooterNG>
     </>
   )
 }

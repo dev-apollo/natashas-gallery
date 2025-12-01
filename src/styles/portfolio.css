@@ -17,17 +17,17 @@
 }
 
 .add-art-button {
-  background: linear-gradient(135deg, #501e26, #7a2c35);
+  background: linear-gradient(135deg, #6b2730, #8a323c);
   color: white;
-  padding: 10px 22px;
-  border-radius: 12px;
+  padding: 10px 26px;
   border: none;
+  border-radius: 12px;
   font-weight: 600;
   transition: 0.25s ease;
 }
 
 .add-art-button:hover {
-  background: linear-gradient(135deg, #6d2b33, #8c3a44);
+  background: linear-gradient(135deg, #6b2730, #8a323c);
 }
 
 .portfolio-grid {

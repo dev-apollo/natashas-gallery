@@ -6,6 +6,7 @@ import Skeleton from "react-loading-skeleton";
 import NavbarNG from "../components/NavbarNG";
 import "../styles/eventsByCountry.css";
 import { motion } from "motion/react"
+import FooterNG from "../components/FooterNG";
 
 function EventsByCountry() {
 
@@ -173,6 +174,8 @@ function EventsByCountry() {
                     )}
                 </section>
             </Container>
+
+            <FooterNG></FooterNG>
         </>
     );
 }

@@ -4,6 +4,8 @@ import { Container, Form } from "react-bootstrap";
 import { createEvent } from "../services/api";
 import "../styles/contacts.css"
 import { motion } from "motion/react"
+import FooterNG from "../components/FooterNG";
+import { useNavigate } from "react-router";
 
 function CreateEvent() {
 
@@ -19,6 +21,13 @@ function CreateEvent() {
         }
     });
     const [newImage, setNewImage] = useState<File | null>(null);
+
+
+    const navigate = useNavigate();
+    
+    const goBack = () : void => {
+        navigate("/events");
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -38,6 +47,7 @@ function CreateEvent() {
             form.append("status", "visible");
             form.append("coverImg", newImage);
             await createEvent(form);
+            alert("Evento foi criado com sucesso!");
             window.location.reload();
         } catch (e) {
             console.error(e);
@@ -164,8 +174,18 @@ function CreateEvent() {
                         />
                     </Form.Group>
                     <motion.button className="button-ok btn" whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }} type="submit">Adicionar evento</motion.button>
+                    <motion.button
+                        className="button-cancel btn"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.9 }}
+                        onClick={goBack}
+                        >
+                        Cancelar
+                    </motion.button>
                 </Form>
             </Container>
+
+            <FooterNG></FooterNG>
         </>
     )
 }

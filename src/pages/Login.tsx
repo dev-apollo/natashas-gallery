@@ -5,6 +5,7 @@ import { getAdminToken } from "../services/firebase";
 import { useNavigate } from "react-router";
 import "../styles/login.css"
 import { motion } from "motion/react"
+import FooterNG from "../components/FooterNG";
 
 function Login() {
 
@@ -101,6 +102,8 @@ function Login() {
                     </motion.div>
                 )}
             </Container>
+
+            <FooterNG></FooterNG>
         </>
     )
 }

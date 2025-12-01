@@ -1,26 +1,29 @@
 .events-container {
-  padding: 40px 0 80px 0;
+  padding: 40px 16px 80px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
 }
 
 .events-titles {
-  font-size: 2.6rem;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
   color: #501e26;
-  padding: 12px 28px;
+  padding: 12px 0;
+  text-align: center;
 }
 
 .events-divider {
-  width: 70px;
+  width: 60px;
   height: 5px;
   background: #501e26;
-  margin: 12px auto 0 auto;
+  margin: 12px auto 0;
   border-radius: 4px;
 }
 
 .events-subtitle {
   font-family: "Playfair Display", serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
   color: #501e26;
   text-align: center;
   margin-bottom: 20px;
@@ -28,10 +31,10 @@
 
 .countries-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
   width: 100%;
-  max-width: 850px;
+  max-width: 600px;
   margin-top: 20px;
 }
 
@@ -39,9 +42,9 @@
   background: rgba(255,255,255,0.25);
   backdrop-filter: blur(8px);
   border: 1px solid rgba(255,255,255,0.45);
-
-  padding: 18px;
-  height: 75px;
+  padding: 16px;
+  height: auto;
+  min-height: 65px;
   border-radius: 16px;
 
   display: flex;
@@ -57,12 +60,15 @@
 }
 
 .country-link {
-  font-size: 1.2rem;
+  font-size: clamp(1rem, 3.5vw, 1.25rem);
   font-weight: 600;
   text-decoration: none;
-
+  text-align: center;
   color: #501e26;
   transition: 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
 
 .country-link:hover {
@@ -72,7 +78,31 @@
 .no-result {
   text-align: center;
   color: #3a2a2a;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   margin-top: 15px;
 }
 
+.country-flag {
+  width: 32px;
+  height: 22px;
+  object-fit: cover;
+  border-radius: 4px;
+  box-shadow: 0 0 4px rgba(0,0,0,0.25);
+}
+
+
+@media (max-width: 480px) {
+  .events-container {
+    padding: 20px 12px 60px 12px;
+  }
+
+  .countries-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+
+  .country-card {
+    min-height: 60px;
+    padding: 14px;
+  }
+}

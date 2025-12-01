@@ -76,17 +76,19 @@
 }
 
 .art-save-btn {
-  margin-top: 25px;
-  background: #501e26;
+  background: linear-gradient(135deg, #6b2730, #8a323c);
   color: white;
-  padding: 10px 24px;
-  border-radius: 12px;
+  padding: 10px 26px;
   border: none;
+  border-radius: 12px;
   font-weight: 600;
+  transition: 0.25s ease;
 }
+
 .art-save-btn:hover {
-  background: #6b2730;
+  background: linear-gradient(135deg, #6b2730, #8a323c);
 }
+
 
 @media (max-width: 768px) {
   .art-img {
